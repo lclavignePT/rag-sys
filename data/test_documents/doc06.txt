@@ -1,0 +1,8 @@
+---
+
+**Proposta de Projeto**
+
+Objetivo: Desenvolver uma plataforma de e-learning para capacitação de profissionais da saúde.
+
+Escopo: O projeto visa criar uma plataforma digital que ofereça cursos interativos, webinars e testes de conhecimento para médicos e enfermeiros, com foco em práticas de cuidados preventivos e gestão de doenças crônicas. A plataforma será compatível com dispositivos móveis e terá integração com sistemas de gestão hospitalar.
+
