@@ -1,4 +1,4 @@
-Prescrição Médica:
+Prescrição Médica
 
 Paciente: Maria Oliveira  
 Diagnóstico: Hipertensão  

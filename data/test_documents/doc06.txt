@@ -1,6 +1,4 @@
----
-
-**Proposta de Projeto**
+Proposta de Projeto
 
 Objetivo: Desenvolver uma plataforma de e-learning para capacitação de profissionais da saúde.
 

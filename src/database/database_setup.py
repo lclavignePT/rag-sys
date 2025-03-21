@@ -21,6 +21,7 @@ def create_database_and_tables():
         conn = sqlite3.connect(DATABASE_PATH) # Conecta ou cria o banco se não existir
         cursor = conn.cursor()
 
+
         # SQL para criar a tabela 'metadados' (ESQUEMA FINAL DEFINIDO)
         create_table_sql = """
         CREATE TABLE IF NOT EXISTS metadados (
@@ -34,7 +35,8 @@ def create_database_and_tables():
             tipo_documento TEXT NOT NULL,
             tags TEXT,
             nivel_acesso TEXT NOT NULL CHECK(nivel_acesso IN ('publico', 'restrito', 'confidencial')),
-            codigo_autenticacao TEXT
+            codigo_autenticacao TEXT,
+            titulo TEXT
         );
         """
         cursor.execute(create_table_sql)
