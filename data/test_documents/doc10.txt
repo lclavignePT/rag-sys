@@ -1,8 +1,0 @@
-Prescrição Médica
-
-Paciente: Maria Oliveira  
-Diagnóstico: Hipertensão  
-Medicação:  
-- Losartana 50mg, 1 comprimido ao dia  
-- Hidratação: 2 litros de água por dia  
-Recomendações: Evitar alimentos ricos em sódio e manter a prática de atividades físicas regulares.

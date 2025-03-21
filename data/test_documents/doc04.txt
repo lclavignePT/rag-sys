@@ -1,7 +1,0 @@
-Manual de Instruções
-
-1. Conecte o dispositivo à rede Wi-Fi.
-2. Abra o aplicativo correspondente ao dispositivo em seu smartphone.
-3. Selecione "Configurações" no menu principal e clique em "Sincronizar Dispositivo".
-4. Aguarde até que a sincronização esteja concluída. A luz indicadora no dispositivo ficará verde quando o processo for bem-sucedido.
-
