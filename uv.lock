@@ -605,6 +605,15 @@ wheels = [
 ]
 
 [[package]]
+name = "pystatx"
+version = "0.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/1f/57/e3fc5dd838d1e82c77202ec6c329868033f0bf04030f051ade93fe1255cb/pystatx-0.1.tar.gz", hash = "sha256:556eed2f1697f91eec5991f8823a6a6702512442f4a058f2a55a55ed21efa579", size = 16597 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/70/2f/42aa3da025563d914a168b508b10771c7a519e5d4035f0a0fdb8a2c3ab37/pystatx-0.1-py3-none-any.whl", hash = "sha256:eb33bbe7dd891303238255293f5daec19d0acd18185dddebc1f02d57ca3aaa2d", size = 16412 },
+]
+
+[[package]]
 name = "python-dateutil"
 version = "2.9.0.post0"
 source = { registry = "https://pypi.org/simple" }
@@ -668,11 +677,13 @@ dependencies = [
     { name = "instructorembedding" },
     { name = "matplotlib" },
     { name = "pypdf2" },
+    { name = "pystatx" },
     { name = "python-dateutil" },
     { name = "python-dotenv" },
     { name = "scikit-learn" },
     { name = "seaborn" },
     { name = "sentence-transformers" },
+    { name = "statx" },
     { name = "torch" },
     { name = "transformers" },
 ]
@@ -682,11 +693,13 @@ requires-dist = [
     { name = "instructorembedding", specifier = ">=1.0.1" },
     { name = "matplotlib", specifier = ">=3.10.1" },
     { name = "pypdf2", specifier = ">=3.0.1" },
+    { name = "pystatx", specifier = ">=0.1" },
     { name = "python-dateutil", specifier = ">=2.9.0.post0" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
     { name = "scikit-learn", specifier = ">=1.6.1" },
     { name = "seaborn", specifier = ">=0.13.2" },
     { name = "sentence-transformers", specifier = ">=3.4.1" },
+    { name = "statx", specifier = ">=0.0.2" },
     { name = "torch", specifier = ">=2.6.0" },
     { name = "transformers", specifier = ">=4.49.0" },
 ]
@@ -881,6 +894,15 @@ sdist = { url = "https://files.pythonhosted.org/packages/94/e7/b2c673351809dca68
 wheels = [
     { url = "https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl", hash = "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274", size = 11050 },
 ]
+
+[[package]]
+name = "statx"
+version = "0.0.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "six" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c0/a6/00821f7637998f4a6513f363d770d456eb4971d447084687d3dbafea9997/statx-0.0.2.tar.gz", hash = "sha256:5c6f86f92f83faa784edf7e6cc97884277ce883261c0979a3fa743be5fe0b207", size = 3459 }
 
 [[package]]
 name = "sympy"

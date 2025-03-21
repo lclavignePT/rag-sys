@@ -8,11 +8,13 @@ dependencies = [
     "instructorembedding>=1.0.1",
     "matplotlib>=3.10.1",
     "pypdf2>=3.0.1",
+    "pystatx>=0.1",
     "python-dateutil>=2.9.0.post0",
     "python-dotenv>=1.0.1",
     "scikit-learn>=1.6.1",
     "seaborn>=0.13.2",
     "sentence-transformers>=3.4.1",
+    "statx>=0.0.2",
     "torch>=2.6.0",
     "transformers>=4.49.0",
 ]

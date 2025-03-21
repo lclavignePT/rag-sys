@@ -36,7 +36,8 @@ def create_database_and_tables():
             tags TEXT,
             nivel_acesso TEXT NOT NULL CHECK(nivel_acesso IN ('publico', 'restrito', 'confidencial')),
             codigo_autenticacao TEXT,
-            titulo TEXT
+            titulo TEXT,
+            tamanho_bytes INTEGER  -- Adicionado o campo tamanho_bytes!
         );
         """
         cursor.execute(create_table_sql)

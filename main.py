@@ -1,5 +1,5 @@
 import torch
-from src.database.database_operations import inserir_metadados, obter_metadados_por_nome_arquivo, buscar_metadados_por_tags
+from src.database.database_operations import inserir_metadados
 from src.tests.test_models import load_test_documents, generate_embeddings, MODEL_NAMES
 
 # if torch.cuda.is_available():
@@ -31,12 +31,12 @@ if __name__ == "__main__":
 
     print("Inserção de metadados concluída. Gerando embeddings...")
 
-    # Geração de Embeddings
-    for model_name in MODEL_NAMES:
-        print(f"Gerando embeddings com modelo: {model_name}")
-        embeddings_docs, _, _, _ = generate_embeddings(
-            model_name, documentos_teste, [], device="cpu"
-        )  # Passando lista de queries vazia, pois não estamos usando aqui
-        print(f"Embeddings gerados para o modelo {model_name}.")
-
-    print("Teste de inserção de metadados, geração de embeddings e busca por tags concluído.")
+#    # Geração de Embeddings
+#    for model_name in MODEL_NAMES:
+#        print(f"Gerando embeddings com modelo: {model_name}")
+#        embeddings_docs, _, _, _ = generate_embeddings(
+#            model_name, documentos_teste, [], device="cpu"
+#        )  # Passando lista de queries vazia, pois não estamos usando aqui
+#        print(f"Embeddings gerados para o modelo {model_name}.")
+#
+#    print("Teste de inserção de metadados, geração de embeddings e busca por tags concluído.")
