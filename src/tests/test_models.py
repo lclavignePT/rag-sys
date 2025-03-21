@@ -16,7 +16,7 @@ print(f"Dispositivo usado: {device}")
 DATA_DIR = "data/test_documents"
 
 # Modelos a serem testados
-MODEL_NAMES = ["intfloat/e5-large-v2"]
+MODEL_NAMES = ["intfloat/e5-large-v2", "intfloat/multilingual-e5-large", "sentence-transformers/sentence-t5-xl"]
 
 # Queries de busca de exemplo
 QUERIES = [
@@ -46,17 +46,30 @@ def load_test_documents(data_dir):
                 continue
     return documents
 
-def generate_embeddings(model_name, documents, queries, device):
+def generate_embeddings(model_name, documents, device): # REMOVED 'queries' parameter
+    """
+    Gera embeddings para uma lista de documentos usando um modelo Sentence Transformer.
+
+    Args:
+        model_name (str): Nome do modelo Sentence Transformer a ser usado.
+        documents (dict): Dicionário de documentos (nome_arquivo: conteúdo).
+        device (torch.device): Dispositivo (CPU ou GPU) para rodar o modelo.
+
+    Returns:
+        tuple: (embeddings_docs, document_filenames, embedding_time)
+               - embeddings_docs: Embeddings dos documentos (torch.Tensor).
+               - document_filenames: Lista de nomes de arquivos dos documentos.
+               - embedding_time: Tempo total para gerar os embeddings.
+    """
     start_time = time.time()
     print(f"Carregando modelo: {model_name}")
-    model = SentenceTransformer(model_name).to(device) # Carrega Sentence Transformer e move para o device
-    corpus = list(documents.values()) # Lista de documentos
-    embeddings_docs = model.encode(corpus, convert_to_tensor=True, device=device) # Embeddings dos documentos (tensor)
-    embeddings_queries = model.encode(QUERIES, convert_to_tensor=True, device=device) # Embeddings das queries (tensor)
+    model = SentenceTransformer(model_name).to(device)
+    corpus = list(documents.values())
+    embeddings_docs = model.encode(corpus, convert_to_tensor=True, device=device)
     end_time = time.time()
     embedding_time = end_time - start_time
     print(f"Modelo {model_name} carregado e embeddings gerados em {embedding_time:.2f} segundos.")
-    return embeddings_docs, embeddings_queries, list(documents.keys()), embedding_time
+    return embeddings_docs, list(documents.keys()), embedding_time
 
 def search_and_evaluate(embeddings_docs, embeddings_queries, document_filenames, model_name):
     print(f"\n--- Resultados para o modelo: {model_name} ---")

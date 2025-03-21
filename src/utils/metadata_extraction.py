@@ -48,7 +48,7 @@ def _extrair_metadados_txt(filepath):
     """Extrai metadados de um arquivo .txt."""
     metadados = _obter_metadados_fs(filepath)
     if metadados:
-        metadados["tipo_documento"] = ".txt"
+        metadados["tipo_documento"] = "txt"
         metadados["tags"] = os.path.splitext(metadados['nome_arquivo'])[0]
         try:
             with open(filepath, "r", encoding="utf-8") as f:
@@ -63,7 +63,7 @@ def _extrair_metadados_pdf(filepath):
     """Extrai metadados de um arquivo .pdf."""
     metadados = _obter_metadados_fs(filepath)
     if metadados:
-        metadados["tipo_documento"] = ".pdf"
+        metadados["tipo_documento"] = "pdf"
         try:
             with open(filepath, "rb") as f:
                 reader = PdfReader(f)
@@ -83,7 +83,7 @@ def _extrair_metadados_md(filepath):
     """Extrai metadados de um arquivo .md."""
     metadados = _obter_metadados_fs(filepath)
     if metadados:
-        metadados["tipo_documento"] = ".md"
+        metadados["tipo_documento"] = "md"
         metadados["tags"] = os.path.splitext(metadados['nome_arquivo'])[0]
         try:
             with open(filepath, "r", encoding="utf-8") as f:
