@@ -16,10 +16,7 @@ print(f"Dispositivo usado: {device}")
 DATA_DIR = "data/test_documents"
 
 # Modelos a serem testados
-MODEL_NAMES = [
-    "sentence-transformers/all-mpnet-base-v2",
-    "intfloat/e5-large-v2"
-]
+MODEL_NAMES = ["intfloat/e5-large-v2"]
 
 # Queries de busca de exemplo
 QUERIES = [
