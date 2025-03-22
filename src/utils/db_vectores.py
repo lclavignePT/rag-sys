@@ -81,38 +81,3 @@ def buscar_documentos_chromadb(query, model_name, index_name="documentos_index",
                 print(f"Documento '{nome_arquivo}' filtrado por tipo: {tipo_doc_resultado}. Filtro: {tipo_documento_filtro}") # Mensagem de filtro
 
     return resultados_formatados
-    """Busca documentos no índice ChromaDB com base em uma query."""
-
-    # Carrega o modelo de embedding
-    model = SentenceTransformer(model_name)
-    query_embedding = model.encode(query, convert_to_tensor=True).tolist()
-
-    # Cria um cliente ChromaDB persistente
-    client = chromadb.PersistentClient(path=os.path.join(DATABASE_DIR, "chroma_db"))
-
-    # Obtém a coleção
-    collection = client.get_collection(name=index_name)
-    if collection is None:
-        print(f"Erro: Coleção ChromaDB '{index_name}' não encontrada.")
-        return []
-
-    # Realiza a busca por similaridade
-    results = collection.query(
-        query_embeddings=[query_embedding],
-        n_results=n_results,
-        include=["documents", "distances"] # Pega documentos e distâncias
-    )
-
-    # Formata os resultados
-    resultados_formatados = []
-    # print(results)
-    if results and results['ids'][0]:
-        for i, doc_id in enumerate(results['ids'][0]):
-            resultados_formatados.append(
-                {
-                    "nome_arquivo": doc_id,
-                    "score": results['distances'][0][i],  # Distância é a pontuação
-                    "trecho": results['documents'][0][i], # Documento é o trecho
-                }
-            )
-    return resultados_formatados
