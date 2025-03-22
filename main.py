@@ -26,8 +26,9 @@ if __name__ == "__main__":
     model_name = MODEL_NAMES[2]  # Usar o primeiro modelo da lista por enquanto
     print(f"Gerando embeddings com modelo: {model_name}")
     embeddings_docs, document_filenames, embedding_time = generate_embeddings(
-    model_name, documentos_teste, device="cpu"
-)  # Passando lista de queries vazia
+    model_name, documentos_teste, device="cpu", batch_size=32
+)  
+    # Passando lista de queries vazia
     print(f"Embeddings gerados para o modelo {model_name}.")
 
     print("Criando índice ChromaDB...")

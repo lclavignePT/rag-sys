@@ -7,6 +7,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 import os
 import time
+import more_itertools as mit
 
 # Definir o dispositivo: GPU se disponível, senão CPU
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -46,29 +47,33 @@ def load_test_documents(data_dir):
                 continue
     return documents
 
-def generate_embeddings(model_name, documents, device): # REMOVED 'queries' parameter
+def generate_embeddings(model_name, documents, device, batch_size=32):
     """
-    Gera embeddings para uma lista de documentos usando um modelo Sentence Transformer.
+    Gera embeddings para uma lista de documentos usando um modelo Sentence Transformer, com processamento em lotes.
 
     Args:
         model_name (str): Nome do modelo Sentence Transformer a ser usado.
         documents (dict): Dicionário de documentos (nome_arquivo: conteúdo).
         device (torch.device): Dispositivo (CPU ou GPU) para rodar o modelo.
-
-    Returns:
-        tuple: (embeddings_docs, document_filenames, embedding_time)
-               - embeddings_docs: Embeddings dos documentos (torch.Tensor).
-               - document_filenames: Lista de nomes de arquivos dos documentos.
-               - embedding_time: Tempo total para gerar os embeddings.
+        batch_size (int, optional): Tamanho do lote para processamento. Padrão: 32. # ADICIONADO batch_size
     """
     start_time = time.time()
     print(f"Carregando modelo: {model_name}")
     model = SentenceTransformer(model_name).to(device)
     corpus = list(documents.values())
-    embeddings_docs = model.encode(corpus, convert_to_tensor=True, device=device)
+    embeddings_docs_list = [] # Lista para guardar os embeddings de cada lote
+
+    print(f"Gerando embeddings em lotes de {batch_size}...") # Mensagem informativa
+
+    for batch in mit.chunked(corpus, batch_size): # Divide o corpus em lotes
+        batch_embeddings = model.encode(batch, convert_to_tensor=True, device=device) # Gera embeddings para o lote atual
+        embeddings_docs_list.append(batch_embeddings) # Adiciona os embeddings do lote à lista
+
+    embeddings_docs = torch.cat(embeddings_docs_list, dim=0) # Concatena os embeddings de todos os lotes em um único tensor
+
     end_time = time.time()
     embedding_time = end_time - start_time
-    print(f"Modelo {model_name} carregado e embeddings gerados em {embedding_time:.2f} segundos.")
+    print(f"Modelo {model_name} carregado e embeddings gerados em {embedding_time:.2f} segundos (batch_size={batch_size}).") # Informa o batch_size
     return embeddings_docs, list(documents.keys()), embedding_time
 
 def search_and_evaluate(embeddings_docs, embeddings_queries, document_filenames, model_name):
