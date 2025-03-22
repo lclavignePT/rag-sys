@@ -23,7 +23,7 @@ if __name__ == "__main__":
 #    print("Inserção de metadados concluída.")
 
     # --- Geração de Embeddings e Criação do Índice ChromaDB ---
-    model_name = MODEL_NAMES[2]  # Usar o primeiro modelo da lista por enquanto
+    model_name = MODEL_NAMES[1]  # Usar o primeiro modelo da lista por enquanto
     print(f"Gerando embeddings com modelo: {model_name}")
     embeddings_docs, document_filenames, embedding_time = generate_embeddings(
     model_name, documentos_teste, device="cpu", batch_size=32
